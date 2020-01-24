@@ -39,5 +39,17 @@ class MainActivity : AppCompatActivity() {
             }
             data.close()
         }
+        buttonDelete.setOnClickListener {
+            val input = editText2.text.toString()
+            val dbHelper = DBHHelper(this, DB_NAME, null, 1)
+            val result = dbHelper.deleteTask(input.toInt())
+        }
+        buttonEdit.setOnClickListener {
+            val input = editText2.text.toString()
+            val datas = input.split("")
+            val task = Task(datas[0].toInt(), datas[1])
+            val dbHelper = DBHHelper(this, DB_NAME, null, 1)
+            val result = dbHelper.updateTask(task)
+        }
     }
 }
